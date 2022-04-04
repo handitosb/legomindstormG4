@@ -7,9 +7,9 @@ public class Match {
 		
 	int[] score = new int[2]; 	//Beinhaltet zwei Zahlenwerte mit den Punktständen für je einen Spieler
 	int countRound;				//Zählt Anzahl der Spielrunden n mit n = {1..*}			
-	Player[] playerList = new Player[2];	//Speichert, welcher Spieler Round1 anfängt; danach immer im Wechsel
+	Player[] playerList = new Player[2];	//Speichert die beiden Spieler
 	int matchType;			//0 für Mensch/Mensch; 1 für Mensch/Computer;  2 Computer/Computer
-	int beginner;			//Gibt an, wer erste Runde anfängt; 1 = Spieler 1 und 2 = Spieler 2
+	int matchBeginner;			//Gibt an, wer erste Match beginnt; 1 = Spieler 1 und 2 = Spieler 2
 	
 /*
  * Konstruktor	
@@ -20,18 +20,17 @@ public class Match {
 	//DEFAULT Konstruktor - (für zwei menschliche Spieler)
 	public Match() {
 		this.score = new int[]{0,0};
-		this.countRound = 0;
-		this.playerList[0] = new players.Human();
-		this.playerList[1] = new players.Human();
+		this.countRound = 1;
+		setPlayerList(0, 1);
 		this.matchType = 0;
-		this.beginner = 1;
+		this.matchBeginner = 1;
 	}
 	
 	//für Mensch gegen Computer
 	public Match(int matchType, int beginner) {
 		this.score = new int[]{0,0};
-		this.countRound = 0;
-		this.beginner = beginner;
+		this.countRound = 1;
+		this.matchBeginner = beginner;
 		setPlayerList(matchType, beginner);
 		
 	 }
@@ -57,14 +56,10 @@ public class Match {
 			this.playerList[1] = new players.Human();
 		}
 		if (matchType == 1) {
-			if (beginner == 1) {
 				this.playerList[0] = new players.Human();
 				this.playerList[1] = new players.Computer();
-			}
-			else {
-				this.playerList[1] = new players.Human();
-				this.playerList[0] = new players.Computer();
-			}
+			
+			
 		}
 		if (matchType == 2) {
 			this.playerList[0] = new players.Computer();
@@ -85,11 +80,11 @@ public class Match {
 	}
 	
 	public int getBeginner() {
-		return beginner;
+		return matchBeginner;
 	}
 
 	public void setBeginner(int beginner) {
-		this.beginner = beginner;
+		this.matchBeginner = beginner;
 	}
 	
 	
@@ -101,7 +96,7 @@ public class Match {
 
 	public void resetMatch(int newMatchType) {
 		if (newMatchType != this.matchType) {
-			new Match(newMatchType, this.beginner);
+			new Match(newMatchType, this.matchBeginner);
 		}
 		this.countRound = 0;
 		this.matchType = newMatchType;
