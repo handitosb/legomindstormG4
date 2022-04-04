@@ -2,12 +2,14 @@ package game;
 
 import lejos.hardware.lcd.LCD;
 import game.Match;
+import players.Player;
 
 public class Round {
 
 	public Board board; // Jede Spielrunde besitzt ein Board
 	int playerTurn; // gibt an, wer am Zug ist; 1 = "X"; 2 = "O"
 	int countMoves = 0; // Zählt Anzahl der Spielzüge {0 bis 9}
+	int beginnerRound = 0;
 	boolean end; //
 
 	/*

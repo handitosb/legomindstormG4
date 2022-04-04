@@ -64,6 +64,18 @@ public class Logic {
 		// Test: Computer vs. Computer
 		Match match = new Match(2);
 
+		System.out.println("Es beginnt Spieler " + match.getBeginner());
+		int AIfeld = 0;
+		int x;
+		int y;
+		for (int i =  0; i < roundTest.getCountMoves(); i++) {
+			System.out.println("Zug " + i);
+			if (roundTest.getPlayerTurn() == 1 ) {
+				
+			}
+			AIfeld = Computer.AIZug(roundTest);
+		}
+		
 		// while (round.isEnd() != true && round.getCountMoves() < 9) {
 		System.out.println("Es beginnt Spieler " + match.getBeginner());
 		int AIfeld = 0;
