@@ -1,14 +1,15 @@
 package game;
 
 import players.Player;
+import game.Round;
 
 //In sich abgeschlossenes Spiel von Tic-Tac-Toe mit Anzahl n {1..*} an Runden 
 public class Match {
 		
-	int[] score = new int[2]; 	//Beinhaltet zwei Zahlenwerte mit den Punktständen für je einen Spieler
-	int countRound;				//Zählt Anzahl der Spielrunden n mit n = {1..*}			
+	static int[] score = new int[2]; 	//Beinhaltet zwei Zahlenwerte mit den Punktstï¿½nden fï¿½r je einen Spieler
+	int countRound;				//Zï¿½hlt Anzahl der Spielrunden n mit n = {1..*}			
 	Player[] playerList = new Player[2];	//Speichert die beiden Spieler
-	int matchType;			//0 für Mensch/Mensch; 1 für Mensch/Computer;  2 Computer/Computer
+	int matchType;			//0 fï¿½r Mensch/Mensch; 1 fï¿½r Mensch/Computer;  2 Computer/Computer
 	int matchBeginner;			//Gibt an, wer erste Match beginnt; 1 = Spieler 1 und 2 = Spieler 2
 	
 /*
@@ -17,7 +18,7 @@ public class Match {
 	
 	
 
-	//DEFAULT Konstruktor - (für zwei menschliche Spieler)
+	//DEFAULT Konstruktor - (fï¿½r zwei menschliche Spieler)
 	public Match() {
 		this.score = new int[]{0,0};
 		this.countRound = 1;
@@ -26,7 +27,7 @@ public class Match {
 		this.matchBeginner = 1;
 	}
 	
-	//für Mensch gegen Computer
+	//fï¿½r Mensch gegen Computer
 	public Match(int matchType, int beginner) {
 		this.score = new int[]{0,0};
 		this.countRound = 1;
@@ -102,15 +103,15 @@ public class Match {
 		this.matchType = newMatchType;
 	}
 
-	public void printScore() {
+	public static void printScore() {
 		System.out.print("Spielstand: ");
-		System.out.print(this.score[0] + " : ");
-		System.out.print(this.score[1]);
+		System.out.print(score[0] + " : ");
+		System.out.print(score[1]);
 	}
 	
-	public void refreshScore(int winner) {
-		if (winner != 0) {
-		this.setScore(winner-1, ( this.getScore(winner-1)+1 ) );
+	public void refreshScore(Round round) {
+		if (round.getRoundWinner() != 0) {
+		this.setScore(round.getRoundWinner()-1, ( this.getScore(round.getRoundWinner()-1)+1 ) );
 		}
 	}
 	

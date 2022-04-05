@@ -5,11 +5,11 @@ import game.Match;
 import players.Player;
 
 public class Round {
-	Player[] playerList = new Player[2];
+
 	public Board board; // Jede Spielrunde besitzt ein Board
 	int playerTurn; // gibt an, wer am Zug ist; 1 = "X"; 2 = "O"
 	int countMoves = 0; // Z�hlt Anzahl der Spielz�ge {0 bis 9}
-	int beginnerRound = 0; // Gibt an, wer Runde beginnt; 1 f�r Spieler 1; 2 f�r Spieler 2
+	int beginnerRound; // Gibt an, wer Runde beginnt; 1 f�r Spieler 1; 2 f�r Spieler 2
 	boolean end; //
 	static int countRound = 1;
 	int winnerRound;
@@ -22,11 +22,12 @@ public class Round {
 		this.playerTurn = 1;
 		this.countMoves = 0;
 		this.end = false;
-		if (countRound % 2 == 0) {
-			this.beginnerRound = match.getBeginner();
-		} else {
-			this.beginnerRound = countRound % 2 + 1;
-		}
+		//if (countRound % 2 == 0) {
+			//this.beginnerRound = match.getBeginner();
+		//} else {
+			//this.beginnerRound = countRound % 2 + 1;
+		//}
+		this.beginnerRound = match.getBeginner();
 	}
 
 	public Round(Board b, int playerTurn, int cM, boolean end) {
@@ -106,11 +107,14 @@ public class Round {
 			this.setRoundWinner(2);
 			return true;
 		}
-		return false;
+		else {
+			return false;
+		}
+		
 	}
 
 	public void resetRound() {
-		this.setCountRound(1);
+		Round.setCountRound(1);
 	}
 
 	// Spielerwechsel nach Zug
@@ -174,17 +178,28 @@ public class Round {
 	}
 
 	public void setRoundWinner(int winner) {
-		if(this.playerTurn == winner) {
-			this.winnerRound = this.playerTurn;
-			System.out.println("Gewonnen von Spieler: " + getRoundWinner());
+		if(this.beginnerRound == 2) {
+			if (this.beginnerRound != this.playerTurn) {
+				this.winnerRound = this.beginnerRound;
+				System.out.println("player " + getRoundWinner());
+			}else {
+				this.winnerRound = 1;
+				System.out.println("player " + getRoundWinner());
+			}
+		 System.out.println(this.playerTurn);
 		}
-		else if (this.playerTurn != winner) {
-			System.out.println("Draw!");
-		}
-		else {
-			this.winnerRound = 0;
+		if (this.beginnerRound == 1) {
+			if (this.beginnerRound == this.playerTurn) {
+				this.winnerRound = this.beginnerRound;
+				System.out.println("player " + getRoundWinner());
+			}
+			else {
+				this.winnerRound = 2;
+				System.out.println("player " + this.getRoundWinner());
+			}
 		}
 	}
+		
 
 	public int getRoundWinner() {
 		return this.winnerRound;

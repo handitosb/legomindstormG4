@@ -11,13 +11,35 @@ import players.Player;
 import game.Round;
 import game.Match;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Logic {
-
+	
+	static Scanner sc = new Scanner(System.in);
 	static int ButtonID;
 	
 	public static void main(String args[]) {
 		init();
+		System.out.println("retry?");
+		
+		String anfrage = sc.next();
+		
+		String hint = "Invalid input please input y/n";
+		String ans = "y";
+		String no = "n";
+        
+		
+		if (anfrage.equals("y")) {
+			main(args);
+		}
+		if (anfrage.equals("n")) {
+			System.out.println("Goodbye!  ");
+		}
+		else {
+			System.out.println("invalid. Try y/n");
+		}
+		
+		
 //		showmainmenu();
 //		Delay.msDelay(3000);
 //		Display.clear();
@@ -26,19 +48,22 @@ public class Logic {
 //		//System.out.println("buttonID "+ ButtonID);
 //		Display.drawString(Integer.toString(ButtonID));
 //		Delay.msDelay(1000);
-		System.out.println("Gewonnen");
+		//System.out.println("Gewonnen");
 	}
 
 	private static void init() {
+		
+		
 		// Roboter robot = new Roboter();
 		// Display display = new Display();
 		// Match match = new Match();
-		Match match = new Match(2,1);
+		Match match = new Match(2,2);
 		Round round = new Round(match);
 		Computer computer1 = new Computer();
 		Computer computer2 = new Computer();
 		
 		matchType2(match, round);
+		
 
 //Test f�r setBoard(); match.refreshScore(); board.resetBoard()		
 //		match.printScore();
@@ -209,11 +234,16 @@ public class Logic {
 				round.board.printBoardConsole();
 				if (round.isWon()) {
 					return;
+					
 					}
 				round.changeTurn();
 			//}
+				
+				
 		}
+		
 	}
+	
 
 	private static void showmainmenu() {
 		String[] stringmainmenu = new String[] { "Tic-Tac-Toe", "Mensch gegen Mensch", "Mensch vs Computer",
