@@ -40,7 +40,7 @@ public class Logic {
 		
 		matchType2(match, round);
 
-//Test für setBoard(); match.refreshScore(); board.resetBoard()		
+//Test fï¿½r setBoard(); match.refreshScore(); board.resetBoard()		
 //		match.printScore();
 //		round.board.setBoard(0, 2, 1);
 //		round.board.setBoard(0, 2, 2);
@@ -208,7 +208,6 @@ public class Logic {
 				round.board.setBoard(x, y, round.getPlayerTurn(), round);
 				round.board.printBoardConsole();
 				if (round.isWon()) {
-					System.out.println("Gewonnen von Spieler " + round.getRoundWinner() );
 					return;
 					}
 				round.changeTurn();
@@ -225,7 +224,7 @@ public class Logic {
 	// Init
 	// Main Menu
 	// Abfrage: Human vs. Human oder Human vs. Computer
-	// Abfrage: Wer fängt an
+	// Abfrage: Wer fï¿½ngt an
 	// New Match
 	// New Round
 	// New Board
@@ -233,7 +232,7 @@ public class Logic {
 	// (class Logic) Logic ->> valid?
 	// (class Board) Draw()
 	// (class Display) Round "O is next"--> Display LCD.print"O is next"
-	// (class Logic) Prüfung, ob gewonnen
+	// (class Logic) Prï¿½fung, ob gewonnen
 	// (Control/class Input) freigegeben
 	// (Logic/ Display) "Noch ein Spiel?" (ja-> resetBoard(), nein -> MainMenu)
 	// (class Input) Verarbeitung Eingabe

@@ -5,14 +5,14 @@ import game.Match;
 import players.Player;
 
 public class Round {
-
+	Player[] playerList = new Player[2];
 	public Board board; // Jede Spielrunde besitzt ein Board
 	int playerTurn; // gibt an, wer am Zug ist; 1 = "X"; 2 = "O"
-	int countMoves = 0; // Zählt Anzahl der Spielzüge {0 bis 9}
-	int beginnerRound = 0; // Gibt an, wer Runde beginnt; 1 für Spieler 1; 2 für Spieler 2
+	int countMoves = 0; // Zï¿½hlt Anzahl der Spielzï¿½ge {0 bis 9}
+	int beginnerRound = 0; // Gibt an, wer Runde beginnt; 1 fï¿½r Spieler 1; 2 fï¿½r Spieler 2
 	boolean end; //
 	static int countRound = 1;
-	int winnerRound = 0;
+	int winnerRound;
 
 	/*
 	 * //Konstruktor
@@ -45,7 +45,7 @@ public class Round {
 		isEnd();
 	}
 
-	// Methode prüft, ob ein Spieler gewonnen hat und gibt Spieler als int zurück
+	// Methode prï¿½ft, ob ein Spieler gewonnen hat und gibt Spieler als int zurï¿½ck
 	public boolean isWon() {
 		// Zeilenweise waagrecht
 		for (int j = 0; j <= 2; j++) {
@@ -53,13 +53,13 @@ public class Round {
 			if (board.field[i][j].getFieldValue() == 1 && board.field[i + 1][j].getFieldValue() == 1
 					&& board.field[i + 2][j].getFieldValue() == 1) {
 				// match.refreshScore(1);
-				setRoundWinner(1);
+				this.setRoundWinner(1);
 				return true;
 			}
 			if (board.field[i][j].getFieldValue() == 2 && board.field[i + 1][j].getFieldValue() == 2
 					&& board.field[i + 2][j].getFieldValue() == 2) {
 				// refreshScore(2);
-				setRoundWinner(2);
+				this.setRoundWinner(2);
 				return true;
 			}
 
@@ -71,14 +71,14 @@ public class Round {
 			if (board.field[i][j].getFieldValue() == 1 && board.field[i][j + 1].getFieldValue() == 1
 					&& board.field[i][j + 2].getFieldValue() == 1) {
 				// refreshScore(1);
-				setRoundWinner(1);
+				this.setRoundWinner(1);
 				return true;
 			}
 
 			if (board.field[i][j].getFieldValue() == 2 && board.field[i][j + 1].getFieldValue() == 2
 					&& board.field[i][j + 2].getFieldValue() == 2) {
 				// refreshScore(2);
-				setRoundWinner(2);
+				this.setRoundWinner(2);
 				return true;
 			}
 		}
@@ -87,26 +87,23 @@ public class Round {
 		// oben links - Mitte - unten rechts
 		if (board.field[0][0].getFieldValue() == 1 && board.field[1][1].getFieldValue() == 1
 				&& board.field[2][2].getFieldValue() == 1) {
-			setRoundWinner(1);
-
+			this.setRoundWinner(1);
 			return true;
 		}
 		if (board.field[0][0].getFieldValue() == 2 && board.field[1][1].getFieldValue() == 2
 				&& board.field[2][2].getFieldValue() == 2) {
-			setRoundWinner(2);
-
+			this.setRoundWinner(2);
 			return true;
 		}
 		// oben rechts - Mitte - unten links
 		if (board.field[2][0].getFieldValue() == 1 && board.field[1][1].getFieldValue() == 1
 				&& board.field[0][2].getFieldValue() == 1) {
-			setRoundWinner(1);
-
+			this.setRoundWinner(1);
 			return true;
 		}
 		if (board.field[2][0].getFieldValue() == 2 && board.field[1][1].getFieldValue() == 2
 				&& board.field[0][2].getFieldValue() == 2) {
-			setRoundWinner(2);
+			this.setRoundWinner(2);
 			return true;
 		}
 		return false;
@@ -177,7 +174,16 @@ public class Round {
 	}
 
 	public void setRoundWinner(int winner) {
-		this.winnerRound = winner;
+		if(this.playerTurn == winner) {
+			this.winnerRound = this.playerTurn;
+			System.out.println("Gewonnen von Spieler: " + getRoundWinner());
+		}
+		else if (this.playerTurn != winner) {
+			System.out.println("Draw!");
+		}
+		else {
+			this.winnerRound = 0;
+		}
 	}
 
 	public int getRoundWinner() {
