@@ -27,7 +27,6 @@ public class Computer extends Player implements AI {
 	
 	public static int AIZug(Round round) {
 			Random rn = new Random();
-			int count = 0;
 			while (round.getCountMoves() < 9 ) {
 				int randomNumber = rn.nextInt(9)+1;
 				if (round.board.field[((randomNumber-1) % 3)][(randomNumber - 1) / 3].isFree()) {
@@ -38,7 +37,7 @@ public class Computer extends Player implements AI {
 		}
 	
 
-	// Alte Idee: Zug anhand der bereits gemachten Züge wählen
+	// Alte Idee: Zug anhand der bereits gemachten Zï¿½ge wï¿½hlen
 //	@Override
 //	public void Zug2();
 //	
