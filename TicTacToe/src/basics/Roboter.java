@@ -41,7 +41,7 @@ public class Roboter {
 
 	}
 
-	private void bereitePapierVor() throws InterruptedException {
+	public void bereitePapierVor() throws InterruptedException {
 	}
 
 	private void entfernePapier() throws InterruptedException {
@@ -68,7 +68,7 @@ public class Roboter {
 		return this.yAchse;
 	}
 
-	protected void moveToHomePosition() throws InterruptedException {
+	public void moveToHomePosition() throws InterruptedException {
 		zAchse.deaktiviere();
 		xAchse.setSpeed(50);
 		while (!xAchse.isSensorAktiv()) {
@@ -82,7 +82,7 @@ public class Roboter {
 		this.resetTachoCounts();
 	}
 
-	private void moveToPosition(Position2D position2D, int mmSec) throws InterruptedException {
+	public void moveToPosition(Position2D position2D, int mmSec) throws InterruptedException {
 		this.moveToPosition(new Position3D(position2D, this.zAchse.isAktiv()), mmSec);
 	}
 
@@ -121,7 +121,7 @@ public class Roboter {
 		this.xAchse.resetTachoCount();
 		this.yAchse.resetTachoCount();
 		if (xAchse.getTachoCount() != 0 || yAchse.getTachoCount() != 0)
-			throw new RuntimeException("Konnte Tachocount nicht zurücksetzen");
+			throw new RuntimeException("Konnte Tachocount nicht zurï¿½cksetzen");
 	}
 
 	public void stop() {
@@ -129,5 +129,17 @@ public class Roboter {
 		yAchse.stop();
 		zAchse.stop();
 	}
+
+	public void moveRobot(int[][] field) {
+		// TODO Auto-generated method stub
+		for (int j=0; j<3; j++) {
+			for (int i=0; i <3; i++) {
+				field[i][j] = 0;
+				moveToPosition(new Position3D(i,j, false), 30);
+			}
+		}
+	}
+
+	
 
 }

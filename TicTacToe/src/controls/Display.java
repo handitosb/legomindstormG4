@@ -1,13 +1,19 @@
 package controls;
 
+import basics.Roboter;
+import game.Field;
+import game.Round;
 import lejos.hardware.lcd.*;
+import positions.Position3D;
 
 public class Display {
 
 	private static int row = 1;
+	public Roboter robot;
+	public int[][] field = new int[3][3];
 	
-	public Display() {
-		
+	public Display(Roboter robot) {
+		this.robot = robot;
 	}
 	
 	public static void drawString(String message) {
@@ -45,4 +51,42 @@ public class Display {
 		LCD.clear();
 	}
 	
+	public static void messagePosition(String top, String middle, String bottom) {
+		LCD.drawString(top, 0, 1);
+		LCD.drawString(middle, 0, 3);
+		LCD.drawString(bottom, 0, 7);
+	}
+	
+	public int pvpcvp(String lineTop, String lineMiddle, String lineBottom) {
+		int cursor = 1;
+		boolean move = true;
+		while (move) {
+			messagePosition(lineTop, lineMiddle, lineBottom + " " + cursor);
+			int button = Button.waitForAnyPress();
+			if (button == Button.ID_RIGHT)
+				cursor =+ 1;
+			else if (button == Button.ID_LEFT)
+				cursor =+ -1;
+			else if (button == Button.ID_ENTER) {
+				move = false;
+				break;
+			}
+			else
+				Display.drawString("Wrong input!");
+				
+		}
+		return cursor;
+	}
+	
+	public void feldVorbereiten() throws InterruptedException {
+		robot.bereitePapierVor();
+		robot.moveToHomePosition();
+		robot.moveRobot(field);
+	}
+	
+
+	public void moveRobot(int[][] field) throws InterruptedException {
+		// TODO Auto-generated method stub
+		
+	}
 }
