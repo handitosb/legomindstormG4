@@ -8,7 +8,7 @@ public interface AI {
 
 // Klassenmethoden
 	
-	//public int AIZug(Round round);
+	public int AIZug(Round round);
 	
 	//public Field AIZug(Round round);
 	

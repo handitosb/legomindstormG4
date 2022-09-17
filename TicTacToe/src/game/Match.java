@@ -7,9 +7,10 @@ public class Match {
 		
 	int[] score = new int[2]; 	//Beinhaltet zwei Zahlenwerte mit den Punktständen für je einen Spieler
 	int countRound;				//Zählt Anzahl der Spielrunden n mit n = {1..*}			
-	Player[] playerList = new Player[2];	//Speichert die beiden Spieler
+	Player player1;			//Speichert, welcher Spieler Round1 anfängt; danach immer im Wechsel
+	Player player2;			//Speichert, welcher Spieler Round1 anfängt; danach immer im Wechsel
 	int matchType;			//0 für Mensch/Mensch; 1 für Mensch/Computer;  2 Computer/Computer
-	int matchBeginner;			//Gibt an, wer erste Match beginnt; 1 = Spieler 1 und 2 = Spieler 2
+	int beginner;			//Gibt an, wer erste Runde anfängt; 1 = Spieler 1 und 2 = Spieler 2
 	
 /*
  * Konstruktor	
@@ -20,19 +21,31 @@ public class Match {
 	//DEFAULT Konstruktor - (für zwei menschliche Spieler)
 	public Match() {
 		this.score = new int[]{0,0};
-		this.countRound = 1;
-		setPlayerList(0, 1);
+		this.countRound = 0;
+		this.player1 = new players.Human();
+		this.player2 = new players.Human();
 		this.matchType = 0;
-		this.matchBeginner = 1;
+		this.beginner = 1;
 	}
 	
 	//für Mensch gegen Computer
-	public Match(int matchType, int beginner) {
+	public Match(int matchType) {
 		this.score = new int[]{0,0};
-		this.countRound = 1;
-		this.matchBeginner = beginner;
-		setPlayerList(matchType, beginner);
-		
+		this.countRound = 0;
+		if (matchType == 0) {
+			this.player1 = new players.Human();				
+			this.player2 = new players.Human();
+		}
+		if (matchType == 1) {
+			this.player1 = new players.Human();
+			this.player2 = new players.Computer();
+		}
+		if (matchType == 2) {
+			this.player1 = new players.Computer();
+			this.player2 = new players.Computer();
+		} 
+		this.matchType = matchType;
+		this.beginner = 1;
 	 }
 	
 	
@@ -50,23 +63,6 @@ public class Match {
 		this.score[n] = newScore;
 	}
 	
-	public void setPlayerList(int matchType, int beginner) {
-		if (matchType == 0) {
-			this.playerList[0] = new players.Human();				
-			this.playerList[1] = new players.Human();
-		}
-		if (matchType == 1) {
-				this.playerList[0] = new players.Human();
-				this.playerList[1] = new players.Computer();
-			
-			
-		}
-		if (matchType == 2) {
-			this.playerList[0] = new players.Computer();
-			this.playerList[1] = new players.Computer();
-		} 
-	}
-	
 	
 
 	
@@ -80,11 +76,11 @@ public class Match {
 	}
 	
 	public int getBeginner() {
-		return matchBeginner;
+		return beginner;
 	}
 
 	public void setBeginner(int beginner) {
-		this.matchBeginner = beginner;
+		this.beginner = beginner;
 	}
 	
 	
@@ -96,7 +92,7 @@ public class Match {
 
 	public void resetMatch(int newMatchType) {
 		if (newMatchType != this.matchType) {
-			new Match(newMatchType, this.matchBeginner);
+			new Match(newMatchType);
 		}
 		this.countRound = 0;
 		this.matchType = newMatchType;

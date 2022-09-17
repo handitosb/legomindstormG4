@@ -2,31 +2,22 @@ package game;
 
 import lejos.hardware.lcd.LCD;
 import game.Match;
-import players.Player;
 
 public class Round {
-	Player[] playerList = new Player[2];
+
 	public Board board; // Jede Spielrunde besitzt ein Board
 	int playerTurn; // gibt an, wer am Zug ist; 1 = "X"; 2 = "O"
-	int countMoves = 0; // Zï¿½hlt Anzahl der Spielzï¿½ge {0 bis 9}
-	int beginnerRound = 0; // Gibt an, wer Runde beginnt; 1 fï¿½r Spieler 1; 2 fï¿½r Spieler 2
+	int countMoves = 0; // Zählt Anzahl der Spielzüge {0 bis 9}
 	boolean end; //
-	static int countRound = 1;
-	int winnerRound;
 
 	/*
 	 * //Konstruktor
 	 */
-	public Round(Match match) {
+	public Round() {
 		this.board = new Board();
 		this.playerTurn = 1;
 		this.countMoves = 0;
 		this.end = false;
-		if (countRound % 2 == 0) {
-			this.beginnerRound = match.getBeginner();
-		} else {
-			this.beginnerRound = countRound % 2 + 1;
-		}
 	}
 
 	public Round(Board b, int playerTurn, int cM, boolean end) {
@@ -39,95 +30,67 @@ public class Round {
 // Klassenmethoden	
 
 	public void refreshIsEnd() {
-		if (this.getCountMoves() == 9) {
+		if (this.getCountMoves() == 9 ) {
 			this.setEnd(true);
 		}
 		isEnd();
 	}
-
-	// Methode prï¿½ft, ob ein Spieler gewonnen hat und gibt Spieler als int zurï¿½ck
-	public boolean isWon() {
+	
+	// Methode prüft, ob ein Spieler gewonnen hat und gibt Spieler als int zurück
+	public int isWon() {
 		// Zeilenweise waagrecht
 		for (int j = 0; j <= 2; j++) {
 			int i = 0;
-			if (board.field[i][j].getFieldValue() == 1 && board.field[i + 1][j].getFieldValue() == 1
-					&& board.field[i + 2][j].getFieldValue() == 1) {
-				// match.refreshScore(1);
-				this.setRoundWinner(1);
-				return true;
+			if (board.field[i][j].getFieldValue() == 1 && board.field[i+1][j].getFieldValue() == 1
+						&& board.field[i+2][j].getFieldValue() == 1) {
+				//match.refreshScore(1);
+				return 1;
 			}
-			if (board.field[i][j].getFieldValue() == 2 && board.field[i + 1][j].getFieldValue() == 2
-					&& board.field[i + 2][j].getFieldValue() == 2) {
-				// refreshScore(2);
-				this.setRoundWinner(2);
-				return true;
+			if (board.field[i][j].getFieldValue() == 2 && board.field[i+1][j].getFieldValue() == 2
+					&& board.field[i+2][j].getFieldValue() == 2) {
+				//refreshScore(2);
+				return 2;
 			}
-
-		}
-
+				
+			}
+		
 		// Spaltenweise senkrecht
 		for (int i = 0; i <= 2; i++) {
 			int j = 0;
-			if (board.field[i][j].getFieldValue() == 1 && board.field[i][j + 1].getFieldValue() == 1
-					&& board.field[i][j + 2].getFieldValue() == 1) {
-				// refreshScore(1);
-				this.setRoundWinner(1);
-				return true;
+				if (board.field[i][j].getFieldValue() == 1 && board.field[i][j+1].getFieldValue() == 1
+						&& board.field[i][j+2].getFieldValue() == 1) {
+					//refreshScore(1);
+					return 1;
+				}
+					
+				if (board.field[i][j].getFieldValue() == 2 && board.field[i][j+1].getFieldValue() == 2
+						&& board.field[i][j+2].getFieldValue() == 2) {
+					//refreshScore(2);
+					return 2;
+				}
 			}
-
-			if (board.field[i][j].getFieldValue() == 2 && board.field[i][j + 1].getFieldValue() == 2
-					&& board.field[i][j + 2].getFieldValue() == 2) {
-				// refreshScore(2);
-				this.setRoundWinner(2);
-				return true;
-			}
-		}
-
+		
 		// diagonal
 		// oben links - Mitte - unten rechts
 		if (board.field[0][0].getFieldValue() == 1 && board.field[1][1].getFieldValue() == 1
-				&& board.field[2][2].getFieldValue() == 1) {
-			this.setRoundWinner(1);
-			return true;
-		}
+				&& board.field[2][2].getFieldValue() == 1) 
+			return 1;
 		if (board.field[0][0].getFieldValue() == 2 && board.field[1][1].getFieldValue() == 2
-				&& board.field[2][2].getFieldValue() == 2) {
-			this.setRoundWinner(2);
-			return true;
-		}
+				&& board.field[2][2].getFieldValue() == 2)
+			return 2;
 		// oben rechts - Mitte - unten links
 		if (board.field[2][0].getFieldValue() == 1 && board.field[1][1].getFieldValue() == 1
-				&& board.field[0][2].getFieldValue() == 1) {
-			this.setRoundWinner(1);
-			return true;
-		}
+				&& board.field[0][2].getFieldValue() == 1)
+			return 1;
 		if (board.field[2][0].getFieldValue() == 2 && board.field[1][1].getFieldValue() == 2
-				&& board.field[0][2].getFieldValue() == 2) {
-			this.setRoundWinner(2);
-			return true;
-		}
-		return false;
+				&& board.field[0][2].getFieldValue() == 2)
+			return 2;
+		
+			return 0;
 	}
-
-	public void resetRound() {
-		this.setCountRound(1);
-	}
-
-	// Spielerwechsel nach Zug
-	public void changeTurn() {
-		if (playerTurn == 1) {
-			setPlayerTurn(2);
-			// LCD.drawString("O is next!", 0, 0);
-			System.out.println("O is next!");
-			return;
-		}
-		if (playerTurn == 2) {
-			setPlayerTurn(1);
-			// LCD.drawString("X is next!", 0, 0);
-			System.out.println("X is next!");
-			return;
-		}
-	}
+	
+	
+	
 
 	/*
 	 * Getter- und Setter-Methoden
@@ -165,29 +128,24 @@ public class Round {
 		this.end = end;
 	}
 
-	public static int getCountRound() {
-		return countRound;
-	}
+	/*
+	 * Klassenmethoden
+	 */
 
-	public static void setCountRound(int countRound) {
-		Round.countRound = countRound;
-	}
-
-	public void setRoundWinner(int winner) {
-		if(this.playerTurn == winner) {
-			this.winnerRound = this.playerTurn;
-			System.out.println("Gewonnen von Spieler: " + getRoundWinner());
+	// Spielerwechsel nach Zug
+	public void changeTurn() {
+		if (playerTurn == 1) {
+			setPlayerTurn(2);
+			//LCD.drawString("O is next!", 0, 0);
+			System.out.println("O is next!");
+			return;
 		}
-		else if (this.playerTurn != winner) {
-			System.out.println("Draw!");
+		if (playerTurn == 2) {
+			 setPlayerTurn(1);
+			 //LCD.drawString("X is next!", 0, 0);
+			 System.out.println("X is next!");
+			 return;
 		}
-		else {
-			this.winnerRound = 0;
-		}
-	}
-
-	public int getRoundWinner() {
-		return this.winnerRound;
 	}
 
 }

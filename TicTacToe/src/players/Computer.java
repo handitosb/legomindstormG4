@@ -24,8 +24,8 @@ public class Computer extends Player implements AI {
 //		return null;
 //	}
 	
-	
-	public static int AIZug(Round round) {
+	@Override
+	public int AIZug(Round round) {
 			Random rn = new Random();
 			int count = 0;
 			while (round.getCountMoves() < 9 ) {

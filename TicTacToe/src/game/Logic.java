@@ -15,7 +15,7 @@ import java.util.Random;
 public class Logic {
 
 	static int ButtonID;
-	
+
 	public static void main(String args[]) {
 		init();
 //		showmainmenu();
@@ -33,14 +33,11 @@ public class Logic {
 		// Roboter robot = new Roboter();
 		// Display display = new Display();
 		// Match match = new Match();
-		Match match = new Match(2,1);
-		Round round = new Round(match);
+		Round roundTest = new Round();
 		Computer computer1 = new Computer();
 		Computer computer2 = new Computer();
-		
-		matchType2(match, round);
 
-//Test fï¿½r setBoard(); match.refreshScore(); board.resetBoard()		
+//Test für setBoard(); match.refreshScore(); board.resetBoard()		
 //		match.printScore();
 //		round.board.setBoard(0, 2, 1);
 //		round.board.setBoard(0, 2, 2);
@@ -65,119 +62,119 @@ public class Logic {
 //
 
 		// Test: Computer vs. Computer
-		// Match match = new Match(2,1);
+		Match match = new Match(2);
 
-//		// while (round.isEnd() != true && round.getCountMoves() < 9) {
-//		System.out.println("Es beginnt Spieler " + match.getBeginner());
-//		int AIfeld = 0;
-////		if (AIfeld == 0) {
-////			roundTest.setEnd(true);
-////			System.out.println(roundTest.isWon());
-////		}
-//		int x;
-//		int y;
-//		// Zug 1
-//		System.out.println("Zug 1");
-//		System.out.println("CountMoves " + roundTest.getCountMoves());
-//		AIfeld = computer1.AIZug(roundTest);
-//		x = (AIfeld - 1) % 3;
-//		y = (AIfeld - 1) / 3;
-//		roundTest.board.setBoard(x, y, roundTest.getPlayerTurn(), roundTest);
-//		roundTest.board.printBoardConsole();
-//		roundTest.changeTurn();
-//
-//		// Zug2
-//		System.out.println("Zug 2");
-//		System.out.println("CountMoves " + roundTest.getCountMoves());
-//		AIfeld = computer2.AIZug(roundTest);
-//		x = (AIfeld - 1) % 3;
-//		y = (AIfeld - 1) / 3;
-//		roundTest.board.setBoard(x, y, roundTest.getPlayerTurn(), roundTest);
-//		roundTest.board.printBoardConsole();
-//		roundTest.changeTurn();
-//
-//		// Zug3
-//		System.out.println("Zug 3");
-//		System.out.println("CountMoves " + roundTest.getCountMoves());
-//		AIfeld = computer1.AIZug(roundTest);
-//		x = (AIfeld - 1) % 3;
-//		y = (AIfeld - 1) / 3;
-//		roundTest.board.setBoard(x, y, roundTest.getPlayerTurn(), roundTest);
-//		roundTest.board.printBoardConsole();
-//		roundTest.changeTurn();
-//
-//		// Zug4
-//		System.out.println("Zug 4");
-//		System.out.println("CountMoves " + roundTest.getCountMoves());
-//		AIfeld = computer2.AIZug(roundTest);
-//		x = (AIfeld - 1) % 3;
-//		y = (AIfeld - 1) / 3;
-//		roundTest.board.setBoard(x, y, roundTest.getPlayerTurn(), roundTest);
-//		roundTest.board.printBoardConsole();
-//		roundTest.changeTurn();
-//
-//		// Zug5
-//		System.out.println("Zug 5");
-//		System.out.println("CountMoves " + roundTest.getCountMoves());
-//		AIfeld = computer1.AIZug(roundTest);
-//		x = (AIfeld - 1) % 3;
-//		y = (AIfeld - 1) / 3;
-//		roundTest.board.setBoard(x, y, roundTest.getPlayerTurn(), roundTest);
-//		roundTest.board.printBoardConsole();
-//		if (roundTest.isWon() > 0)
-//			return;
-//		roundTest.changeTurn();
-//
-//		// Zug6
-//		System.out.println("Zug 6");
-//		System.out.println("CountMoves " + roundTest.getCountMoves());
-//		AIfeld = computer2.AIZug(roundTest);
-//		x = (AIfeld - 1) % 3;
-//		y = (AIfeld - 1) / 3;
-//		roundTest.board.setBoard(x, y, roundTest.getPlayerTurn(), roundTest);
-//		roundTest.board.printBoardConsole();
-//		if (roundTest.isWon() > 0)
-//			return;
-//		roundTest.changeTurn();
-//
-//		// Zug7
-//		System.out.println("Zug 7");
-//		System.out.println("CountMoves " + roundTest.getCountMoves());
-//		AIfeld = computer1.AIZug(roundTest);
-//		x = (AIfeld - 1) % 3;
-//		y = (AIfeld - 1) / 3;
-//		roundTest.board.setBoard(x, y, roundTest.getPlayerTurn(), roundTest);
-//		roundTest.board.printBoardConsole();
-//		if (roundTest.isWon() > 0)
-//			return;
-//		roundTest.changeTurn();
-//
-//		// Zug8
-//		System.out.println("Zug 8");
-//		System.out.println("CountMoves " + roundTest.getCountMoves());
-//		AIfeld = computer2.AIZug(roundTest);
-//		x = (AIfeld - 1) % 3;
-//		y = (AIfeld - 1) / 3;
-//		roundTest.board.setBoard(x, y, roundTest.getPlayerTurn(), roundTest);
-//		roundTest.board.printBoardConsole();
-//		if (roundTest.isWon() > 0)
-//			return;
-//		roundTest.changeTurn();
-//
-//		// Zug9
-//		System.out.println("Zug 9");
-//		System.out.println("CountMoves " + roundTest.getCountMoves());
-//		AIfeld = computer1.AIZug(roundTest);
-//		x = (AIfeld - 1) % 3;
-//		y = (AIfeld - 1) / 3;
-//		roundTest.board.setBoard(x, y, roundTest.getPlayerTurn(), roundTest);
-//		roundTest.board.printBoardConsole();
-//		if (roundTest.isWon() > 0)
-//			return;
-//		roundTest.changeTurn();
-//
-//		match.printScore();
-//		roundTest.board.printBoardConsole();
+		// while (round.isEnd() != true && round.getCountMoves() < 9) {
+		System.out.println("Es beginnt Spieler " + match.getBeginner());
+		int AIfeld = 0;
+//		if (AIfeld == 0) {
+//			roundTest.setEnd(true);
+//			System.out.println(roundTest.isWon());
+//		}
+		int x;
+		int y;
+		// Zug 1
+		System.out.println("Zug 1");
+		System.out.println("CountMoves " + roundTest.getCountMoves());
+		AIfeld = computer1.AIZug(roundTest);
+		x = (AIfeld - 1) % 3;
+		y = (AIfeld - 1) / 3;
+		roundTest.board.setBoard(x, y, roundTest.getPlayerTurn(), roundTest);
+		roundTest.board.printBoardConsole();
+		roundTest.changeTurn();
+
+		// Zug2
+		System.out.println("Zug 2");
+		System.out.println("CountMoves " + roundTest.getCountMoves());
+		AIfeld = computer2.AIZug(roundTest);
+		x = (AIfeld - 1) % 3;
+		y = (AIfeld - 1) / 3;
+		roundTest.board.setBoard(x, y, roundTest.getPlayerTurn(), roundTest);
+		roundTest.board.printBoardConsole();
+		roundTest.changeTurn();
+
+		// Zug3
+		System.out.println("Zug 3");
+		System.out.println("CountMoves " + roundTest.getCountMoves());
+		AIfeld = computer1.AIZug(roundTest);
+		x = (AIfeld - 1) % 3;
+		y = (AIfeld - 1) / 3;
+		roundTest.board.setBoard(x, y, roundTest.getPlayerTurn(), roundTest);
+		roundTest.board.printBoardConsole();
+		roundTest.changeTurn();
+
+		// Zug4
+		System.out.println("Zug 4");
+		System.out.println("CountMoves " + roundTest.getCountMoves());
+		AIfeld = computer2.AIZug(roundTest);
+		x = (AIfeld - 1) % 3;
+		y = (AIfeld - 1) / 3;
+		roundTest.board.setBoard(x, y, roundTest.getPlayerTurn(), roundTest);
+		roundTest.board.printBoardConsole();
+		roundTest.changeTurn();
+
+		// Zug5
+		System.out.println("Zug 5");
+		System.out.println("CountMoves " + roundTest.getCountMoves());
+		AIfeld = computer1.AIZug(roundTest);
+		x = (AIfeld - 1) % 3;
+		y = (AIfeld - 1) / 3;
+		roundTest.board.setBoard(x, y, roundTest.getPlayerTurn(), roundTest);
+		roundTest.board.printBoardConsole();
+		if (roundTest.isWon() > 0)
+			return;
+		roundTest.changeTurn();
+
+		// Zug6
+		System.out.println("Zug 6");
+		System.out.println("CountMoves " + roundTest.getCountMoves());
+		AIfeld = computer2.AIZug(roundTest);
+		x = (AIfeld - 1) % 3;
+		y = (AIfeld - 1) / 3;
+		roundTest.board.setBoard(x, y, roundTest.getPlayerTurn(), roundTest);
+		roundTest.board.printBoardConsole();
+		if (roundTest.isWon() > 0)
+			return;
+		roundTest.changeTurn();
+
+		// Zug7
+		System.out.println("Zug 7");
+		System.out.println("CountMoves " + roundTest.getCountMoves());
+		AIfeld = computer1.AIZug(roundTest);
+		x = (AIfeld - 1) % 3;
+		y = (AIfeld - 1) / 3;
+		roundTest.board.setBoard(x, y, roundTest.getPlayerTurn(), roundTest);
+		roundTest.board.printBoardConsole();
+		if (roundTest.isWon() > 0)
+			return;
+		roundTest.changeTurn();
+
+		// Zug8
+		System.out.println("Zug 8");
+		System.out.println("CountMoves " + roundTest.getCountMoves());
+		AIfeld = computer2.AIZug(roundTest);
+		x = (AIfeld - 1) % 3;
+		y = (AIfeld - 1) / 3;
+		roundTest.board.setBoard(x, y, roundTest.getPlayerTurn(), roundTest);
+		roundTest.board.printBoardConsole();
+		if (roundTest.isWon() > 0)
+			return;
+		roundTest.changeTurn();
+
+		// Zug9
+		System.out.println("Zug 9");
+		System.out.println("CountMoves " + roundTest.getCountMoves());
+		AIfeld = computer1.AIZug(roundTest);
+		x = (AIfeld - 1) % 3;
+		y = (AIfeld - 1) / 3;
+		roundTest.board.setBoard(x, y, roundTest.getPlayerTurn(), roundTest);
+		roundTest.board.printBoardConsole();
+		if (roundTest.isWon() > 0)
+			return;
+		roundTest.changeTurn();
+
+		match.printScore();
+		roundTest.board.printBoardConsole();
 
 // Spiel Computer vs Computer
 //		computer.Zug1(round);
@@ -192,29 +189,6 @@ public class Logic {
 
 	}
 
-	// MatchType = 2 C vs. C
-	public static void matchType2(Match match, Round round) {
-		System.out.println("Es beginnt Computer " + match.getBeginner());
-		int AIfeld = 0;
-		int x;
-		int y;
-		for (int i = 1; i < 10; i++) {
-			System.out.println("Zug " + i); // Bugfixing
-			//if (round.getPlayerTurn() == 1) {
-
-				AIfeld = Computer.AIZug(round);
-				x = (AIfeld - 1) % 3;
-				y = (AIfeld - 1) / 3;
-				round.board.setBoard(x, y, round.getPlayerTurn(), round);
-				round.board.printBoardConsole();
-				if (round.isWon()) {
-					return;
-					}
-				round.changeTurn();
-			//}
-		}
-	}
-
 	private static void showmainmenu() {
 		String[] stringmainmenu = new String[] { "Tic-Tac-Toe", "Mensch gegen Mensch", "Mensch vs Computer",
 				"Computer vs Computer" };
@@ -224,7 +198,7 @@ public class Logic {
 	// Init
 	// Main Menu
 	// Abfrage: Human vs. Human oder Human vs. Computer
-	// Abfrage: Wer fï¿½ngt an
+	// Abfrage: Wer fängt an
 	// New Match
 	// New Round
 	// New Board
@@ -232,7 +206,7 @@ public class Logic {
 	// (class Logic) Logic ->> valid?
 	// (class Board) Draw()
 	// (class Display) Round "O is next"--> Display LCD.print"O is next"
-	// (class Logic) Prï¿½fung, ob gewonnen
+	// (class Logic) Prüfung, ob gewonnen
 	// (Control/class Input) freigegeben
 	// (Logic/ Display) "Noch ein Spiel?" (ja-> resetBoard(), nein -> MainMenu)
 	// (class Input) Verarbeitung Eingabe
